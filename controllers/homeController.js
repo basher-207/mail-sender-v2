@@ -1,3 +1,5 @@
+const homePagePath = 'pages/home';
+
 exports.renderHomepage = (req, res) => {
-  res.send('home')
+  res.render(homePagePath);
 };

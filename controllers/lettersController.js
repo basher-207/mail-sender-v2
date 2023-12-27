@@ -1,3 +1,5 @@
+const lettersPagesPath = 'pages/letters';
+
 exports.renderLetters = (req, res) => {
-  res.send('letters');
+  res.render(lettersPagesPath);
 };

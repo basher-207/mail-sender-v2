@@ -1,3 +1,5 @@
+const receiversPagesPath = 'pages/receivers';
+
 exports.renderReceivers = (req, res) => {
-  res.send('receiversss');
+  res.render(receiversPagesPath);
 };
