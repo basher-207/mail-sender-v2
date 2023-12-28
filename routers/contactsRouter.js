@@ -1,8 +1,8 @@
 const express = require('express');
-const controller = require('../controllers/receiversController.js');
+const controller = require('../controllers/contactsController.js');
 const router = express.Router();
 
 router.route('/')
-  .get(controller.renderReceivers)
+  .get(controller.renderContacts)
 
 module.exports = router;

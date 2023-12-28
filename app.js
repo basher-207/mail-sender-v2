@@ -2,7 +2,7 @@ const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 
 const homeRouter = require('./routers/homeRouter.js');
-const receiversRouter = require('./routers/receiversRouter.js');
+const contactsRouter = require('./routers/contactsRouter.js');
 const lettersRouter = require('./routers/lettersRouter.js');
 const wrongRouteRouter = require('./routers/wrongRouteRouter.js');
 
@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(ejsLayouts);
 
 app.use('/', homeRouter);
-app.use('/receivers', receiversRouter);
+app.use('/contacts', contactsRouter);
 app.use('/letters', lettersRouter);
 
 app.use('/*', wrongRouteRouter);
