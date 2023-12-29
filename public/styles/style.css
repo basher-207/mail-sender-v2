@@ -63,7 +63,7 @@ header {
 header > div{
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3vw;
 }
 
 /* PAGE LAYOUT GRID */

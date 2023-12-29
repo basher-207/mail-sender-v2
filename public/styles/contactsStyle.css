@@ -1,0 +1,22 @@
+/* TOP TAB SETUP (ADD BUTTON AND SEARCH INPUT) */
+#top-tab {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchInput {
+  width: 25vw;
+}
+
+/* TABLE SETUP */
+#contacts-table {
+  margin: 1rem auto;
+}
+#contacts-table td:last-child {
+  text-align: right;
+}
+#contacts-table td:last-child button:last-child {
+  margin-left: 0.5rem;
+}
+
+
