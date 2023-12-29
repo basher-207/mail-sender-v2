@@ -5,20 +5,24 @@
 <section>
   <div id="top-tab">
     <button type="button" class="btn btn-success">Add new contact</button>
-    <input type="text" class="searchInput form-control" placeholder="Search">
+    <input type="text" class="searchInput form-control" placeholder="Search" oninput="contactsSearch(value)">
   </div>
   <div id="contacts-table">
     <table class="table table-primary table-hover">
       <tbody>
-        <tr>
-          <td>Markfdsagfkm gaekrmng akg</td>
-          <td>Ottfdgk adfblb o</td>
-          <td>
-            <button type="button" class="btn btn-warning btn-sm">Edit</button>
-            <button type="button" class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
+        <% contacts.forEach((contact) => { %>
+          <tr>
+            <td><%= contact.name %></td>
+            <td><%= contact.email %></td>
+            <td>
+              <button type="button" class="btn btn-warning btn-sm" onclick="renderEditContactPage('<%- contact._id %>');">Edit</button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="deleteContact('<%- contact._id %>');">Delete</button>
+            </td>
+          </tr>
+        <% }); %>
       </tbody>
     </table>
   </div>
-</section> 
+</section>
+
+<script src="/scripts/contacts/index.js"></script>
