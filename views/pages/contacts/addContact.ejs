@@ -1,0 +1,19 @@
+<%- contentFor('header') %>
+
+<%- contentFor('body') %>
+<section>
+  <form action="/contacts/add" method="post">
+    <div class="form-floating mb-2">
+      <input type="text" class="form-control" id="name" name="name" placeholder="Name" maxlength="50">
+      <label for="name">Name</label>
+    </div>
+    <div class="form-floating mb-2">
+      <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" maxlength="50">
+      <label for="email">Email address</label>
+    </div>
+    <button type="submit" class="btn btn-success mb-4">Add contact</button>
+  </form>
+  <input type="hidden" id="alertMessage" value="<%= alert %>">  <!-- alert message holder -->
+</section>
+
+<script src="/scripts/contacts/addContact.js"></script>

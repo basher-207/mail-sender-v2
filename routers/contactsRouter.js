@@ -5,6 +5,10 @@ const router = express.Router();
 router.route('/')
   .get(controller.renderContacts)
 
+router.route('/add')
+  .get(controller.renderAddContact)
+  .post(controller.addContact)
+
 router.route('/:id/edit')
   .get(controller.renderContactEdit)
 

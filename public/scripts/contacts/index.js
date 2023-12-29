@@ -1,22 +1,26 @@
-function createRequestForm(method, action, parentElement) {
+function createRequestForm(method, action) {
+  const section = document.querySelector('section');
   // creating form for request
   const form = document.createElement('form');
   form.setAttribute('method', method);
   form.setAttribute('action', action);
-  // append form to DOM
-  parentElement.appendChild(form);
+  // insert form in DOM
+  section.appendChild(form);
   return form;
 };
 
+function renderAddContact() {
+  const form = createRequestForm('get', '/contacts/add');
+  form.submit();
+};
+
 function renderEditContactPage(contactId) {
-  const section = document.querySelector('section');
-  const form = createRequestForm('get', `/contacts/${contactId}/edit`, section);
+  const form = createRequestForm('get', `/contacts/${contactId}/edit`);
   form.submit();
 };
 
 function deleteContact(contactId) {
-  const section = document.querySelector('section');
-  const form = createRequestForm('post', `/contacts/${contactId}/delete`, section);
+  const form = createRequestForm('post', `/contacts/${contactId}/delete`);
   form.submit();
 };
 

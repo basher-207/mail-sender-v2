@@ -4,7 +4,7 @@
 <%- contentFor('body') %>
 <section>
   <div id="top-tab">
-    <button type="button" class="btn btn-success">Add new contact</button>
+    <button type="button" class="btn btn-success" onclick="renderAddContact();">Add new contact</button>
     <input type="text" class="searchInput form-control" placeholder="Search" oninput="contactsSearch(value)">
   </div>
   <div id="contacts-table">
