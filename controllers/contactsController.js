@@ -15,7 +15,7 @@ exports.renderContacts = async (req, res) => {
 
 
 // /contacts/add route
-exports.validateContact = async (req, res, next) => {
+exports.validateContactCreation = async (req, res, next) => {
   try {
     const { name, email } = req.body;
     await Contact.validate({ name, email });
@@ -45,12 +45,53 @@ exports.addContact = async (req, res) => {
 
 
 // /contacts/:id/edit route
+exports.validateContactUpdate = async (req, res, next) => {
+  const contactId = req.params.id;
+  const { name, email } = req.body;
+  try {
+    await Contact.validate({ name, email });
+    const foundContact = await Contact.findOne({ email });
+    if(foundContact && String(foundContact._id) !== contactId){
+      throw new Error('Contact with this email is already exist');
+    }
+    next();
+  } catch (error) {
+    res.render(contactsPagesPath + '/editContact', {
+      contact: { _id: contactId, name, email }, 
+      alert: error.message
+    });
+  }
+};
+
 exports.renderContactEdit = async (req, res) => {
-  res.send('edit');
+  try {
+    const contactId = req.params.id;
+    const contact = await Contact.findById(contactId);
+    res.render(contactsPagesPath + '/editContact', { contact, alert: '' });
+  } catch (error) {
+    res.redner(err500Path);
+  }
+};
+
+exports.editContact = async (req, res) => {
+  try {
+    const contactId = req.params.id;
+    const { name, email } = req.body;
+    await Contact.updateOne({ _id: contactId }, { name, email });
+    res.redirect('/contacts');
+  } catch (error) {
+    res.redner(err500Path);
+  }
 };
 
 
 //contacts/:id/delete route
 exports.deleteContact = async (req, res) => {
-  res.send('delete');
+  try {
+    const contactId = req.params.id;
+    await Contact.deleteOne({ _id: contactId });
+    res.redirect('/contacts');
+  } catch (error) {
+    res.render(err500Path);
+  }
 };

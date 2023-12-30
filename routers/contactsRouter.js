@@ -7,10 +7,11 @@ router.route('/')
 
 router.route('/add')
   .get(controller.renderAddContact)
-  .post(controller.validateContact, controller.addContact)
+  .post(controller.validateContactCreation, controller.addContact)
 
 router.route('/:id/edit')
   .get(controller.renderContactEdit)
+  .post(controller.validateContactUpdate, controller.editContact)
 
 router.route('/:id/delete')
   .post(controller.deleteContact)

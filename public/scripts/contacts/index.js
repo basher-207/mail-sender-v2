@@ -25,7 +25,7 @@ function deleteContact(contactId) {
 };
 
 function contactsSearch(value) {
-  const contacts = [document.querySelector('tr')];
+  const contacts = [...document.querySelector('tbody').children];
   const filter = value.toLowerCase();
   contacts.forEach((contact) => {
     const textContent = contact.innerText.replace('Edit', '').replace('Delete', '');
