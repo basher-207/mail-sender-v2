@@ -7,7 +7,7 @@ router.route('/')
 
 router.route('/add')
   .get(controller.renderAddContact)
-  .post(controller.addContact)
+  .post(controller.validateContact, controller.addContact)
 
 router.route('/:id/edit')
   .get(controller.renderContactEdit)

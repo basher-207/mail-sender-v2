@@ -1,15 +1,15 @@
 window.onload = () => {
+  loadAlertIfExist();
+};
+
+function loadAlertIfExist() {
   const alertMessage = document.querySelector('#alertMessage').value;
   if(alertMessage === '') return;
-  if(alertMessage === 'success'){
-    createAlert('Contact successfully added', 'success');
+  if(!alertMessage.includes('success')){
+    createAlert(alertMessage, 'danger');
     return;
   }
-  if(alertMessage.includes('duplicate')) {
-    createAlert('Contact with this email is already exist', 'danger');
-    return;
-  }
-  createAlert(alertMessage, 'danger');
+  createAlert(alertMessage, 'success');
 };
 
 function createAlert (message, alertType) {
@@ -23,5 +23,5 @@ function createAlert (message, alertType) {
   section.appendChild(alert);
   setTimeout(() => {
     section.removeChild(alert);
-  }, 4000);
+  }, 5000);
 };

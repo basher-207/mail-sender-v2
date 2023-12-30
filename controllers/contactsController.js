@@ -2,6 +2,7 @@ const Contact = require('../models/contactModel.js');
 const contactsPagesPath = 'pages/contacts';
 const err500Path = 'pages/errors/500_err.ejs';
 
+// /contacts route
 exports.renderContacts = async (req, res) => {
   try {
     const query = Contact.find();
@@ -12,6 +13,22 @@ exports.renderContacts = async (req, res) => {
   }
 };
 
+
+// /contacts/add route
+exports.validateContact = async (req, res, next) => {
+  try {
+    const { name, email } = req.body;
+    await Contact.validate({ name, email });
+    const contact = await Contact.findOne({ email });
+    if(contact){
+      throw new Error('Contact with this email is already exist');
+    }
+    next();
+  } catch (error) {
+    res.render(contactsPagesPath + '/addContact', {alert: error.message});
+  }
+};
+
 exports.renderAddContact = (req, res) => {
   res.render(contactsPagesPath + '/addContact', {alert: ''});
 };
@@ -19,20 +36,21 @@ exports.renderAddContact = (req, res) => {
 exports.addContact = async (req, res) => {
   try {
     const { name, email } = req.body;
-    if(!name || !email){
-      throw new Error('Name and email should be specified');
-    }
     await Contact.create({ name, email });
-    res.render(contactsPagesPath + '/addContact', {alert: 'success'});
+    res.render(contactsPagesPath + '/addContact', {alert: 'Contact successfully added'});
   } catch (error) {
-    res.render(contactsPagesPath + '/addContact', {alert: error.message});
+    res.render(err500Path);
   }
 };
 
+
+// /contacts/:id/edit route
 exports.renderContactEdit = async (req, res) => {
   res.send('edit');
 };
 
+
+//contacts/:id/delete route
 exports.deleteContact = async (req, res) => {
   res.send('delete');
 };
