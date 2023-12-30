@@ -1,6 +1,10 @@
 window.onload = () => {
   loadAlertIfExist();
+  handleSubmitButtonAppearence();
 };
+
+// Disabling or anabling submit button if inputs are filled
+document.querySelector('form').addEventListener('input', handleSubmitButtonAppearence);
 
 function loadAlertIfExist() {
   const alertMessage = document.querySelector('#alertMessage').value;
@@ -24,4 +28,16 @@ function createAlert (message, alertType) {
   setTimeout(() => {
     section.removeChild(alert);
   }, 5000);
+};
+
+function handleSubmitButtonAppearence() {
+  const button = document.querySelector('button[type=submit]');
+  const nameInput = document.querySelector('input[id=name]');
+  const emailInput = document.querySelector('input[id=email]');
+
+  if(nameInput.value && emailInput.value) {
+    button.disabled = false;
+  } else {
+    button.disabled = true;
+  }
 };
