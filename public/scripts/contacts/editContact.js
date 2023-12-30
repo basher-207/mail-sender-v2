@@ -11,5 +11,5 @@ document.querySelector('form').addEventListener('input', handleSubmitButtonAppea
 function loadAlertIfExist() {
   const alertMessage = document.querySelector('#alertMessage').value;
   if(alertMessage === '') return;
-  createAlert(alertMessage, 'danger');
+  createAlert(alertMessage, 'danger', 5000);
 };

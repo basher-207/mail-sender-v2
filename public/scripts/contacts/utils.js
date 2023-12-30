@@ -1,4 +1,4 @@
-function createAlert (message, alertType) {
+function createAlert (message, alertType, timeout) {
   const section = document.querySelector('section');
 
   const alert = document.createElement('div');
@@ -7,9 +7,12 @@ function createAlert (message, alertType) {
   alert.innerText = message;
 
   section.appendChild(alert);
-  setTimeout(() => {
-    section.removeChild(alert);
-  }, 5000);
+
+  if(timeout){
+    setTimeout(() => {
+      section.removeChild(alert);
+    }, timeout);
+  }
 };
 
 function handleSubmitButtonAppearence() {
@@ -24,4 +27,15 @@ function handleSubmitButtonAppearence() {
   }
 };
 
-export { createAlert, handleSubmitButtonAppearence }
+function createRequestForm(method, action) {
+  const section = document.querySelector('section');
+  // creating form for request
+  const form = document.createElement('form');
+  form.setAttribute('method', method);
+  form.setAttribute('action', action);
+  // insert form in DOM
+  section.appendChild(form);
+  return form;
+};
+
+export { createAlert, handleSubmitButtonAppearence, createRequestForm }

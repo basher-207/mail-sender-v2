@@ -12,8 +12,8 @@ function loadAlertIfExist() {
   const alertMessage = document.querySelector('#alertMessage').value;
   if(alertMessage === '') return;
   if(!alertMessage.includes('success')){
-    createAlert(alertMessage, 'danger');
+    createAlert(alertMessage, 'danger', 5000);
     return;
   }
-  createAlert(alertMessage, 'success');
+  createAlert(alertMessage, 'success', 5000);
 };

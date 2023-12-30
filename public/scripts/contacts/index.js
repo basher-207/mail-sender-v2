@@ -1,3 +1,5 @@
+import { createAlert, createRequestForm } from './utils.js';
+
 window.onload = () => {
   showContactsEmptyListMessage();
 };
@@ -12,27 +14,34 @@ function showContactsEmptyListMessage() {
 
 // ONCLICK FUNCTIONS
 
-function renderAddContact() {
-  const form = createRequestForm('get', '/contacts/add');
-  form.submit();
-};
+document.querySelector('section').addEventListener('click', (event) => {
+  if(event.target.localName !== 'button') return;
+  const targetClasses = [...event.target.classList];
+  if(targetClasses.includes('add-contact')){     //redirect to /contacts/add route
+    const form = createRequestForm('get', '/contacts/add');
+    form.submit();
+    return;
+  }
+  if(targetClasses.includes('edit')){            //redirect to contacts/;id/edit route
+    const contactId = event.target.value;
+    const form = createRequestForm('get', `/contacts/${contactId}/edit`);
+    form.submit();
+    return;
+  }
+  if(targetClasses.includes('delete')){          //redirect to /contacts/:id/delete route
+    const contactId = event.target.value;
+    const form = createRequestForm('post', `/contacts/${contactId}/delete`);
+    form.submit();
+    return;
+  }
+});
 
-function renderEditContactPage(contactId) {
-  const form = createRequestForm('get', `/contacts/${contactId}/edit`);
-  form.submit();
-};
 
-function deleteContact(contactId) {
-  const form = createRequestForm('post', `/contacts/${contactId}/delete`);
-  form.submit();
-};
+// SEARCHING 
 
-
-// SEARCHING INPUTS
-
-function contactsSearch(value) {
+document.querySelector('input.search-input').addEventListener('input', (event) => {
   const contacts = [...document.querySelector('tbody').children];
-  const filter = value.toLowerCase();
+  const filter = event.target.value.toLowerCase();
   contacts.forEach((contact) => {
     const textContent = contact.innerText.replace('Edit', '').replace('Delete', '');
 
@@ -40,32 +49,7 @@ function contactsSearch(value) {
     contact.style.display = '' :
     contact.style.display = 'none'
   });
-};
-
-
-// UTILS
-
-function createRequestForm(method, action) {
-  const section = document.querySelector('section');
-  // creating form for request
-  const form = document.createElement('form');
-  form.setAttribute('method', method);
-  form.setAttribute('action', action);
-  // insert form in DOM
-  section.appendChild(form);
-  return form;
-};
-
-function createAlert (message, alertType, timeout) {
-  const section = document.querySelector('section');
-
-  const alert = document.createElement('div');
-  alert.setAttribute('class', `alert alert-${alertType}`);
-  alert.setAttribute('role', 'alert');
-  alert.innerText = message;
-
-  section.appendChild(alert);
-};
+});
 
 
 

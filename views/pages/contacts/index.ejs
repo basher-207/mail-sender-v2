@@ -4,8 +4,8 @@
 <%- contentFor('body') %>
 <section>
   <div id="top-tab">
-    <button type="button" class="btn btn-success" onclick="renderAddContact();">Add new contact</button>
-    <input type="text" class="searchInput form-control" placeholder="Search" oninput="contactsSearch(value)">
+    <button type="button" class="add-contact btn btn-success">Add new contact</button>
+    <input type="text" class="search-input form-control" placeholder="Search">
   </div>
   <div id="contacts-table">
     <table class="table table-primary table-hover">
@@ -15,8 +15,8 @@
             <td><%= contact.name %></td>
             <td><%= contact.email %></td>
             <td>
-              <button type="button" class="btn btn-warning btn-sm" onclick="renderEditContactPage('<%- contact._id %>');">Edit</button>
-              <button type="button" class="btn btn-danger btn-sm" onclick="deleteContact('<%- contact._id %>');">Delete</button>
+              <button type="button" class="edit btn btn-warning btn-sm" value="<%= contact._id %>">Edit</button>
+              <button type="button" class="delete btn btn-danger btn-sm" value="<%= contact._id %>">Delete</button>
             </td>
           </tr>
         <% }); %>
@@ -25,4 +25,4 @@
   </div>
 </section>
 
-<script src="/scripts/contacts/index.js"></script>
+<script src="/scripts/contacts/index.js" type="module"></script>
