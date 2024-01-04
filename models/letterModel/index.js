@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const receiverSchema = require('./receiverObjectSchema.js');
-const insertSchema = require('./insertObjectSchema.js')
+const receiverSchema = require('./receiverSchema.js');
+const insertSchema = require('./insertSchema.js');
 
 const letterSchema = new mongoose.Schema({
   name: {
@@ -14,8 +14,8 @@ const letterSchema = new mongoose.Schema({
     required: [true, 'Letter text must be specified'],
     trim: true,
   },
-  receivers: [ receiverSchema ],
-  inserts: [ insertSchema ]
+  receivers: receiverSchema,
+  inserts: insertSchema
 });
 
 const Letter = mongoose.model('Letter', letterSchema);
