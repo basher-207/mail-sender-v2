@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const optionSchema = {
+const optionSchema = new mongoose.Schema ({
   tag: {
     type: String,
     required: true,
@@ -10,9 +10,11 @@ const optionSchema = {
     type: String,
     required: true,
   }
-};
+},{
+  _id: false
+});
 
-const insertSchema = {
+const insertSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -24,6 +26,8 @@ const insertSchema = {
     enum: ['group', 'personal']
   },
   options: [ optionSchema ]
-};
+},{
+  _id: false
+});
 
 module.exports = insertSchema;

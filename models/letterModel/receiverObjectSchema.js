@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const receiverGroupInsertSchema = {
+const receiverGroupInsertSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -11,9 +11,11 @@ const receiverGroupInsertSchema = {
     required: true,
     trim: true
   }
-};
+},{
+  _id: false
+});
 
-const receiverPersonalInsertSchema = {
+const receiverPersonalInsertSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -23,9 +25,11 @@ const receiverPersonalInsertSchema = {
     type: String,
     required: true
   }
-};
+},{
+  _id: false
+});
 
-const receiverSchema = {
+const receiverSchema = new mongoose.Schema({
   contact: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Contact',
@@ -33,6 +37,8 @@ const receiverSchema = {
   },
   groupInserts: [ receiverGroupInsertSchema ],
   personalInserts: [ receiverPersonalInsertSchema ]
-};
+},{
+  _id: false
+});
 
 module.exports = receiverSchema;
