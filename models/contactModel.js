@@ -11,10 +11,10 @@ const contactSchema = new mongoose.Schema({
     required: [true, "Contact email must be specified"],
     unique: [true, "Contact with this email is already exist"]
   },
-  // letters: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Letter',
-  // }
+  letters: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Letter',
+  }
 });
 
 const Contact = mongoose.model('Contact', contactSchema);
