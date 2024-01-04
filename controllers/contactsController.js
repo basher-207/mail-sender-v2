@@ -1,4 +1,4 @@
-const Contact = require('../models/contactModel.js');
+const Contact = require('../models/contactModel/index.js');
 const contactsPagesPath = 'pages/contacts';
 const err500Path = 'pages/errors/500_err.ejs';
 
